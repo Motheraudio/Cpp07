@@ -4,36 +4,36 @@
 template <typename T>
 class Array {
 public:
-  Array(){this->arr = NULL; this->size = 0;};
+  Array(){this->arr = NULL; this->sz = 0;};
   Array(unsigned int n){ 
 	  this->arr = new T[n];
-	  this->size = n;
+	  this->sz = n;
 	  for (unsigned int i = 0; i < n; i++)
 		  this->arr[i] = 0;
   };
   Array(const Array& obj){
-	  this->arr = new T[obj.size];
+	  this->arr = new T[obj.sz];
 	  *this = obj;
 
   }
   ~Array(){delete this->arr;};
   Array& operator=(const Array& obj){
-	  this->size = obj.size;
-	  for (unsigned int i = 0; i < this->size; i++)
+	  this->sz = obj.sz;
+	  for (unsigned int i = 0; i < this->sz; i++)
 		  this->arr[i] = obj.arr[i];
 	  return (*this);
   };
   T& operator[](const size_t index){
-	  if (index >= this->size)
+	  if (index >= this->sz)
 		  throw (std::exception());
 	  return (this->arr[index]);
   }
-
-  
+  unsigned int& size() const{
+	return (this->size);
+  }
 private:
   T *arr;
-  unsigned int size;
+  unsigned int sz;
 };
 
-std::ostream&	operator<<(std::ostream& os, const Array&obj);
 
