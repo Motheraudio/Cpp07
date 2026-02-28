@@ -1,6 +1,7 @@
 #pragma once
 
-#include <iostream>
+#include <cstdlib>
+#include <exception>
 template <typename T>
 class Array {
 public:
@@ -16,7 +17,7 @@ public:
 	  *this = obj;
 
   }
-  ~Array(){delete this->arr;};
+  ~Array(){delete[] this->arr;};
   Array& operator=(const Array& obj){
 	  this->sz = obj.sz;
 	  for (unsigned int i = 0; i < this->sz; i++)
