@@ -7,19 +7,27 @@ class Array {
 public:
   Array(){this->arr = NULL; this->sz = 0;};
   Array(unsigned int n){ 
-	  this->arr = new T[n];
 	  this->sz = n;
+	  if (n == 0)
+		  this->arr = NULL;
+	  else
+		this->arr = new T[n];
 	  for (unsigned int i = 0; i < n; i++)
 		  this->arr[i] = 0;
   };
   Array(const Array& obj){
-	  this->arr = new T[obj.sz];
+	  if (obj.arr != NULL)
+		this->arr = new T[obj.sz];
+	  else
+		  this->arr = NULL;
 	  *this = obj;
 
   }
   ~Array(){delete[] this->arr;};
   Array& operator=(const Array& obj){
 	  this->sz = obj.sz;
+	  if (this->sz == 0)
+		  return (*this);
 	  for (unsigned int i = 0; i < this->sz; i++)
 		  this->arr[i] = obj.arr[i];
 	  return (*this);
